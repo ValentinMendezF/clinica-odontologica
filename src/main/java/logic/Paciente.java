@@ -3,21 +3,25 @@ package logic;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-
+@Entity
 public class Paciente extends Persona {
-    private int id_paciente;
+    //private int id_paciente;
     private boolean tiene_OS;
     private String tipoSangre;
+    @OneToOne
     private Responsable unResponsable;
+    @OneToMany(mappedBy = "paciente")
     private List<Turno> listaTurnos;
 
     public Paciente() {
     }
 
-    public Paciente(int id_paciente, boolean tiene_OS, String tipoSangre, Responsable unResponsable, List<Turno> listaTurnos, String dni, String nombre, String apellido, String telefono, String direccion, Date fechaNacimiento) {
-        super(dni, nombre, apellido, telefono, direccion, fechaNacimiento);
-        this.id_paciente = id_paciente;
+    public Paciente(boolean tiene_OS, String tipoSangre, Responsable unResponsable, List<Turno> listaTurnos, int id, String dni, String nombre, String apellido, String telefono, String direccion, Date fechaNacimiento) {
+        super(id, dni, nombre, apellido, telefono, direccion, fechaNacimiento);
         this.tiene_OS = tiene_OS;
         this.tipoSangre = tipoSangre;
         this.unResponsable = unResponsable;
@@ -25,13 +29,13 @@ public class Paciente extends Persona {
     }
 
 
-    public int getId_Paciente() {
+   /* public int getId_Paciente() {
         return id_paciente;
     }
 
     public void setId_Paciente(int id_Paciente) {
         this.id_paciente = id_Paciente;
-    }
+    }*/
 
     public boolean isTiene_OS() {
         return tiene_OS;

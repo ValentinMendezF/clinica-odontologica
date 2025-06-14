@@ -1,36 +1,44 @@
 
 package logic;
 
+
 import java.util.Date;
 import java.util.List;
-
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+@Entity
 public class Odontologo extends Persona {
-    private int id_odontologo;
+    //private int id_odontologo;
     private String especialidad;
+    @OneToMany (mappedBy = "odontologo")
     private List<Turno> listaTurnos;
+    @OneToOne
     private Usuario unUsuario;
+    @OneToOne
     private Horario unHorario;
 
     public Odontologo() {
     }
 
-    public Odontologo(int id_odontologo, String especialidad, List<Turno> listaTurnos, Usuario unUsuario, Horario unHorario, String dni, String nombre, String apellido, String telefono, String direccion, Date fechaNacimiento) {
-        super(dni, nombre, apellido, telefono, direccion, fechaNacimiento);
-        this.id_odontologo = id_odontologo;
+    public Odontologo(String especialidad, List<Turno> listaTurnos, Usuario unUsuario, Horario unHorario, int id, String dni, String nombre, String apellido, String telefono, String direccion, Date fechaNacimiento) {
+        super(id, dni, nombre, apellido, telefono, direccion, fechaNacimiento);
         this.especialidad = especialidad;
         this.listaTurnos = listaTurnos;
         this.unUsuario = unUsuario;
         this.unHorario = unHorario;
     }
 
-    public int getId_odontologo() {
+    
+
+    /*public int getId_odontologo() {
         return id_odontologo;
     }
 
     public void setId_odontologo(int id_odontologo) {
         this.id_odontologo = id_odontologo;
     }
-
+    */
     public String getEspecialidad() {
         return especialidad;
     }
