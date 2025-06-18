@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import logic.Paciente;
 import persistence.exceptions.NonexistentEntityException;
 
@@ -31,7 +32,11 @@ public class PacienteJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+    
+    public PacienteJpaController() {
+        emf = Persistence.createEntityManagerFactory("clinicaPU");
+    }
+    
     public void create(Paciente paciente) {
         if (paciente.getListaTurnos() == null) {
             paciente.setListaTurnos(new ArrayList<Turno>());

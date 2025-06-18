@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import logic.Secretario;
@@ -29,7 +30,11 @@ public class SecretarioJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+    
+    public SecretarioJpaController() {
+        emf = Persistence.createEntityManagerFactory("clinicaPU");
+    }
+    
     public void create(Secretario secretario) {
         EntityManager em = null;
         try {
